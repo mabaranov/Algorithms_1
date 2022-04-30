@@ -40,9 +40,7 @@ public class LinkedList
         Node node = this.head;
         while (node != null) {
             if (node.value == _value)
-            {
                 nodes.add(node);
-            }
             node = node.next;
         }
 
@@ -51,6 +49,8 @@ public class LinkedList
 
     public boolean remove(int _value)
     {
+        if (this.head == null) return false;
+
         Node node = this.head;
         if (node.value == _value)
         {
@@ -76,11 +76,10 @@ public class LinkedList
 
     public void removeAll(int _value)
     {
+        if (this.head == null) return;
+
         Node node = this.head;
-        if (node.value == _value)
-        {
-            this.head = node.next;
-        }
+        if (node.value == _value) this.head = node.next;
 
         Node prev = node;
         node = node.next;
