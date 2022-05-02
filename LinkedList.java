@@ -51,24 +51,26 @@ public class LinkedList
     {
         if (this.head == null) return false;
 
-        Node node = this.head;
-        if (node.value == _value)
+        Node cur = this.head;
+        Node prev = null;
+        while (cur != null)
         {
-            this.head = node.next;
-            return true;
-        }
-
-        Node prev = node;
-        node = node.next;
-        while (node != null) {
-            if (node.value == _value)
+            if (cur.value != _value)
             {
-                prev.next = node.next;
-                if (this.tail == node ) this.tail = prev;
-                return true;
+                prev = cur;
+                cur = cur.next;
+                continue;
             }
-            prev = node;
-            node = node.next;
+
+            if (prev == null)
+                this.head = cur.next;
+            else
+                prev.next = cur.next;
+
+            if (this.tail == cur)
+                this.tail = prev;
+
+            return true;
         }
 
         return false;
@@ -78,19 +80,26 @@ public class LinkedList
     {
         if (this.head == null) return;
 
-        Node node = this.head;
-        if (node.value == _value) this.head = node.next;
-
-        Node prev = node;
-        node = node.next;
-        while (node != null) {
-            if (node.value == _value)
+        Node cur = this.head;
+        Node prev = null;
+        while (cur != null)
+        {
+            if (cur.value != _value)
             {
-                prev.next = node.next;
-                if (this.tail == node ) this.tail = prev;
+                prev = cur;
+                cur = cur.next;
+                continue;
             }
-            prev = node;
-            node = node.next;
+
+            if (prev == null)
+                this.head = cur.next;
+            else
+                prev.next = cur.next;
+
+            if (this.tail == cur)
+                this.tail = prev;
+
+            cur = cur.next;
         }
     }
 
