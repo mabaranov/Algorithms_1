@@ -116,19 +116,22 @@ public class LinkedList2
             }
 
             if (this.head == cur) {
-                this.head = cur.next;
-                cur.next.prev = null;
+                cur = cur.next;
+                this.head = cur;
+                cur.prev = null;
                 continue;
             }
 
             if (this.tail == cur) {
-                this.tail = cur.prev;
-                cur.prev.next = null;
+                cur = cur.prev;
+                this.tail = cur;
+                cur.next = null;
                 continue;
             }
 
             cur.prev.next = cur.next;
             cur.next.prev = cur.prev;
+            cur = cur.next;
         }
     }
 
@@ -151,7 +154,7 @@ public class LinkedList2
 
     public void insertAfter(Node _nodeAfter, Node _nodeToInsert)
     {
-        if (this.head == null)
+        if (_nodeAfter == null && this.head == null)
         {
             addInTail(_nodeToInsert);
             return;
