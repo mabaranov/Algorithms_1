@@ -116,8 +116,8 @@ public class OrderedList<T>
             int resCompare = compare(val, item.value);
 
             if (resCompare == 0) return item;
-            if (resCompare == 1 && _ascending) break;
-            if (resCompare == -1 && !_ascending) break;
+            if (resCompare == -1 && _ascending) break;
+            if (resCompare == 1 && !_ascending) break;
 
             item = item.next;
         }
